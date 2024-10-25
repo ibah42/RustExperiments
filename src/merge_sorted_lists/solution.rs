@@ -52,21 +52,22 @@ impl ListNode {
 
     #[allow(dead_code)]
     #[inline]
-    fn is_full(node0: &Option<Box<ListNode>>, node1: &Option<Box<ListNode>>) -> bool{
+    fn is_full(node0: &Option<Box<ListNode>>, node1: &Option<Box<ListNode>>) -> bool {
         node0.is_some() && node1.is_some()
     }
 
 
     #[allow(dead_code)]
     #[inline]
-    fn only_one_full<'a>(node0: &'a Option<Box<ListNode>>, node1: &'a Option<Box<ListNode>>) -> &'a Option<Box<ListNode>>{
+    fn only_one_full<'a>(node0: &'a Option<Box<ListNode>>, node1: &'a Option<Box<ListNode>>) -> &'a Option<Box<ListNode>> {
         debug_assert_ne!(node0.is_some(), node1.is_some());
         return if node0.is_some() { node0 } else { node1 };
     }
 }
 
 
-pub fn merge_sorted_nodes(node0: &Option<Box<ListNode>>, node1: &Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+pub fn merge_sorted_nodes(node0: &Option<Box<ListNode>>, node1: &Option<Box<ListNode>>) -> Option<Box<ListNode>>
+{
     if node0.is_none() || node1.is_none() {
         return ListNode::deep_clone(ListNode::only_one_full(node0, node1));
     }
@@ -93,9 +94,9 @@ pub fn merge_sorted_nodes(node0: &Option<Box<ListNode>>, node1: &Option<Box<List
 fn create_new_from_selected_and_iterate(
     node0: &mut &Option<Box<ListNode>>,
     node1: &mut &Option<Box<ListNode>>,
-) -> Option<Box<ListNode>> {
-
-    let value : i32;
+) -> Option<Box<ListNode>>
+{
+    let value: i32;
     assert!(ListNode::is_full(*node0, *node1));
 
     if node0.as_ref()?.value <= node1.as_ref()?.value {
