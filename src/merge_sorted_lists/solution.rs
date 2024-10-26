@@ -42,7 +42,6 @@ impl ListNode {
         return result;
     }
 
-
     #[allow(dead_code)]
     #[inline]
     fn is_empty(node0: &Option<Box<ListNode>>, node1: &Option<Box<ListNode>>) -> bool {

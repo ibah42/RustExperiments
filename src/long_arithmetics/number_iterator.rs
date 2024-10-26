@@ -35,6 +35,6 @@ impl Iterator for NumberIterator<'_> {
             self.current_index += 1
         };
 
-        Some(self.number.get_buffer()[id as usize])
+        Some(self.number.buffer()[id as usize])
     }
 }

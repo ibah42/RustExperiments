@@ -49,17 +49,19 @@ impl Number {
     }
 
     #[inline]
-    pub fn get_buffer(&self) -> &Vec<u8> { &self.digits }
+    pub fn buffer(&self) -> &Vec<u8> { &self.digits }
 
     #[inline]
-    pub fn iter(&self) -> NumberIterator {
-        NumberIterator::new(false, &self)
-    }
+    pub fn buffer_mut(&mut self) -> & mut Vec<u8> { & mut self.digits }
 
     #[inline]
-    pub fn iter_reverse(&self) -> NumberIterator {
-        NumberIterator::new(true, &self)
-    }
+    pub fn iter(&self) -> NumberIterator { NumberIterator::new(false, &self) }
+
+    #[inline]
+    pub fn iter_reverse(&self) -> NumberIterator { NumberIterator::new(true, &self) }
+
+    #[inline]
+    pub fn len(&self) -> usize { self.digits.len() }
 
     pub fn to_string(&self) -> String {
         let mut result: String = String::with_capacity(self.digits.len());
@@ -69,8 +71,13 @@ impl Number {
         result
     }
 
-    #[inline]
-    pub fn len(&self) -> usize { self.digits.len() }
+    pub fn try_get_digit(&self, index: usize) -> u8 {
+        if index >= self.len() {
+            0
+        } else {
+            self.digits[index]
+        }
+    }
 
     pub fn multiply(number1: &Number, number2: &Number) -> Self {
         let mut result = Number::new_zero();
@@ -83,7 +90,46 @@ impl Number {
             offset += 1;
         }
 
+        result.normalize_zeros();
         return result;
+    }
+
+    pub fn sum(number1: &Number, number2: &Number) -> Self {
+        let max_id = max(number1.len(), number2.len());
+        let mut array = Vec::with_capacity(max_id + 1);
+        let mut reminder = 0;
+
+        for id in 0..max_id {
+            let total = reminder + number1.try_get_digit(id) + number2.try_get_digit(id);
+            array.push(total % 10);
+            reminder = total / 10;
+        }
+
+        if reminder != 0 {
+            array.push(reminder);
+        }
+
+        Number { digits: array }
+    }
+
+    fn normalize_zeros(&mut self) {
+        let mut new_len = self.len();
+
+        for i in (0..self.len()).rev() {
+            if self.try_get_digit(i) == 0 {
+                new_len = i;
+            } else {
+                break;
+            }
+        }
+
+        if new_len != self.len() {
+            if new_len == 0 {
+                new_len = 1;
+            }
+
+            self.digits.truncate(new_len);
+        }
     }
 
     fn multiply_byte(number: &Number, mul: u8, offset: i32) -> Self {
@@ -104,20 +150,11 @@ impl Number {
             reminder = total / 10;
         }
 
-        Number { digits: array }
-    }
-
-    pub fn sum(number1: &Number, number2: &Number) -> Self {
-        let mut array = Vec::with_capacity(max(number1.len(), number2.len()) + 1);
-        let mut reminder = 0;
-
-        for n1 in number1.iter() {
-            for n2 in number2.iter() {
-                let total = reminder + n1 + n2;
-                array.push(total % 10);
-                reminder = total / 10;
-            }
+        if reminder != 0 {
+            array.push(reminder);
         }
+
         Number { digits: array }
     }
+
 }
