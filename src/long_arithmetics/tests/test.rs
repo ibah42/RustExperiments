@@ -1,5 +1,7 @@
 ﻿#[cfg(test)]
 mod test {
+    use std::thread;
+    use std::thread::JoinHandle;
     use rand::RngCore;
     use crate::long_arithmetics::number::Number;
 
@@ -46,23 +48,48 @@ mod test {
     #[test]
     fn test_random() {
         let mut rng = rand::thread_rng();
+        const ITERATIONS : usize = 1024;
 
-        for i in 0..1000 {
+        let time_start = std::time::Instant::now();
+
+        for _ in 0..ITERATIONS {
             let v1 = rng.next_u64() as u128;
             let v2 = rng.next_u64() as u128;
             test_integer_to_string(v1, v2);
         }
+
+        println!(r#"{0} ms time per 1 multiplication"#, time_start.elapsed().as_millis() as f32 / ITERATIONS as f32);
     }
 
     #[test]
     fn test_brut_force() {
-        let mut rng = rand::thread_rng();
+        const OFFSET: usize = 1024;
 
-        for v1 in 0..1000 {
-            for v2 in 0..1000 {
-                test_integer_to_string(v1, v2);
-            }
+        let threads_count = thread::available_parallelism().unwrap().get() / 2;
+        let mut handles: Vec<JoinHandle<()>> = Vec::with_capacity(threads_count);
+
+        let time_start = std::time::Instant::now();
+
+        for i in 0..threads_count {
+            let handle: JoinHandle<()> = thread::spawn(move || {
+                let low = i * OFFSET;
+                let high = (i + 1) * OFFSET;
+
+                for v1 in low..high {
+                    for v2 in low..high {
+                        test_integer_to_string(v1 as u128, v2 as u128);
+                    }
+                }
+            });
+
+            handles.push(handle);
         }
+
+        for handle in handles {
+            handle.join().unwrap();
+        }
+
+        println!(r#"{0} ms time per 1 multiplication"#, time_start.elapsed().as_millis() as f32 / OFFSET as f32);
     }
 
     fn test_digits(v1: &[u8], v2: &[u8], result_checked: &[u8]) {

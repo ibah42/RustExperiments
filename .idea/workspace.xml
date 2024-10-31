@@ -8,11 +8,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f072a137-d6ba-4df9-9960-2c2533496458" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/rotate_list/list_node.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/rotate_list/mod.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/rotate_list/tests/mod.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/rotate_list/tests/test.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/mod.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/string_utils.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/long_arithmetics/number.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/long_arithmetics/number.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/long_arithmetics/number_iterator.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/long_arithmetics/number_iterator.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/long_arithmetics/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/long_arithmetics/mod.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/long_arithmetics/tests/test.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/long_arithmetics/tests/test.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/merge_sorted_lists/solution.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/merge_sorted_lists/solution.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/merge_sorted_lists/tests/test.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/merge_sorted_lists/tests/test.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/multiply_strings/number.rs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +28,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="RsBuildProfile:test" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Rust File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -37,32 +52,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Cargo.Test long_arithmetics::tests::test::test::test_digits_2.executor": "Debug",
-    "Cargo.Test long_arithmetics::tests::test::test::test_digits_3.executor": "Debug",
-    "Cargo.Test long_arithmetics::tests::test::test::test_digits_4.executor": "Debug",
-    "Cargo.Test long_arithmetics::tests::test::test::test_integer_to_string_4.executor": "Debug",
-    "Cargo.Test long_arithmetics::tests::test::test::test_random.executor": "Run",
-    "Cargo.Test multiply_strings::tests::test::test::test3.executor": "Debug",
-    "Cargo.Test multiply_strings::tests::test::test::test_digits_4.executor": "Debug",
-    "Cargo.Test test::test (1).executor": "Run",
-    "Cargo.Test test::test.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.rust.reset.selective.auto.import": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "org.rust.cargo.project.model.PROJECT_DISCOVERY": "true",
-    "org.rust.first.attach.projects": "true",
-    "settings.editor.selected.configurable": "editor.preferences.tabs",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Cargo.Test long_arithmetics::tests::test::test::test_brut_force.executor&quot;: &quot;Debug&quot;,
+    &quot;Cargo.Test long_arithmetics::tests::test::test::test_digits_2.executor&quot;: &quot;Debug&quot;,
+    &quot;Cargo.Test long_arithmetics::tests::test::test::test_digits_3.executor&quot;: &quot;Debug&quot;,
+    &quot;Cargo.Test long_arithmetics::tests::test::test::test_digits_4.executor&quot;: &quot;Debug&quot;,
+    &quot;Cargo.Test long_arithmetics::tests::test::test::test_integer_to_string_4.executor&quot;: &quot;Debug&quot;,
+    &quot;Cargo.Test long_arithmetics::tests::test::test::test_random.executor&quot;: &quot;Run&quot;,
+    &quot;Cargo.Test multiply_strings::tests::test::test::test3.executor&quot;: &quot;Debug&quot;,
+    &quot;Cargo.Test multiply_strings::tests::test::test::test_digits_4.executor&quot;: &quot;Debug&quot;,
+    &quot;Cargo.Test rotate_list::tests::test::test::test_1.executor&quot;: &quot;Run&quot;,
+    &quot;Cargo.Test test::test (1).executor&quot;: &quot;Run&quot;,
+    &quot;Cargo.Test test::test.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.rust.reset.selective.auto.import&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;org.rust.cargo.project.model.PROJECT_DISCOVERY&quot;: &quot;true&quot;,
+    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
+    &quot;org.rust.first.attach.projects&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Cargo.Test test::test (1)">
+}</component>
+  <component name="RunManager" selected="Cargo.Test rotate_list::tests::test::test::test_1">
     <configuration name="Run RustExperiments" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
       <option name="buildProfileId" value="dev" />
       <option name="command" value="run --package RustExperiments --bin RustExperiments" />
@@ -98,25 +116,8 @@
         <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test long_arithmetics::tests::test::test::test_digits_3" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
-      <option name="command" value="test --package RustExperiments --bin RustExperiments long_arithmetics::tests::test::test::test_digits_3 -- --exact" />
-      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
-      <envs />
-      <option name="emulateTerminal" value="true" />
-      <option name="channel" value="DEFAULT" />
-      <option name="requiredFeatures" value="true" />
-      <option name="allFeatures" value="false" />
-      <option name="withSudo" value="false" />
-      <option name="buildTarget" value="REMOTE" />
-      <option name="backtrace" value="SHORT" />
-      <option name="isRedirectInput" value="false" />
-      <option name="redirectInputPath" value="" />
-      <method v="2">
-        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Test long_arithmetics::tests::test::test::test_digits_4" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
-      <option name="command" value="test --package RustExperiments --bin RustExperiments long_arithmetics::tests::test::test::test_digits_4 -- --exact" />
+    <configuration name="Test long_arithmetics::tests::test::test::test_brut_force" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="command" value="test --package RustExperiments --bin RustExperiments long_arithmetics::tests::test::test::test_brut_force -- --exact" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
       <envs />
       <option name="emulateTerminal" value="true" />
@@ -166,6 +167,23 @@
         <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Test rotate_list::tests::test::test::test_1" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="command" value="test --package RustExperiments --bin RustExperiments rotate_list::tests::test::test::test_1 -- --exact" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <envs />
+      <option name="emulateTerminal" value="true" />
+      <option name="channel" value="DEFAULT" />
+      <option name="requiredFeatures" value="true" />
+      <option name="allFeatures" value="false" />
+      <option name="withSudo" value="false" />
+      <option name="buildTarget" value="REMOTE" />
+      <option name="backtrace" value="SHORT" />
+      <option name="isRedirectInput" value="false" />
+      <option name="redirectInputPath" value="" />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Test test::test (1)" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
       <option name="command" value="test --package RustExperiments --bin RustExperiments long_arithmetics::tests::test::test" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
@@ -185,11 +203,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Cargo.Test rotate_list::tests::test::test::test_1" />
+        <item itemvalue="Cargo.Test long_arithmetics::tests::test::test::test_brut_force" />
         <item itemvalue="Cargo.Test test::test (1)" />
         <item itemvalue="Cargo.Test long_arithmetics::tests::test::test::test_random" />
         <item itemvalue="Cargo.Test long_arithmetics::tests::test::test::test_integer_to_string_4" />
-        <item itemvalue="Cargo.Test long_arithmetics::tests::test::test::test_digits_4" />
-        <item itemvalue="Cargo.Test long_arithmetics::tests::test::test::test_digits_3" />
       </list>
     </recent_temporary>
   </component>
@@ -209,7 +227,10 @@
       <workItem from="1729933170026" duration="1879000" />
       <workItem from="1729935083590" duration="1253000" />
       <workItem from="1729936672472" duration="380000" />
-      <workItem from="1729937083840" duration="1943000" />
+      <workItem from="1729937083840" duration="6144000" />
+      <workItem from="1729947548780" duration="265000" />
+      <workItem from="1730188753304" duration="16456000" />
+      <workItem from="1730292605168" duration="4512000" />
     </task>
     <servers />
   </component>
@@ -221,8 +242,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/long_arithmetics/tests/test.rs</url>
-          <line>91</line>
+          <line>119</line>
           <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/rotate_list/list_node.rs</url>
+          <line>128</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/rotate_list/list_node.rs</url>
+          <line>115</line>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

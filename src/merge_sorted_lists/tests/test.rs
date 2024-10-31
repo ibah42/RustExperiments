@@ -36,8 +36,6 @@ mod test {
         ListNode::new(3);
     }
 
-
-
     fn test_template(array0: &[i32], array1: &[i32], array_result: &[i32], message: &str)
     {
         let chain0 = create_list_node_chain(array0);
