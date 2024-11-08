@@ -1,11 +1,16 @@
+use std::default::Default;
 use eframe::CreationContext;
-use egui::{Color32, TextStyle, TextWrapMode, Widget};
+use egui::{Color32, Separator, TextStyle, TextWrapMode, Widget};
+use egui::WidgetText::RichText;
 use egui::WidgetType::Label;
 use egui_extras;
+use crate::file_commander::volume::Volume;
+use crate::file_commander::disk_type::DiskType;
+use crate::file_commander::file_system_service::*;
+use crate::utils::time_utils;
 
-/// Shows off a table with dynamic layout
 #[cfg_attr(feature = "serde", derive(serde::Deserialize, serde::Serialize))]
-pub struct TableDemo {
+pub struct UI {
     striped: bool,
     resizable: bool,
     clickable: bool,
@@ -15,10 +20,27 @@ pub struct TableDemo {
     selection: std::collections::HashSet<usize>,
     checked: bool,
     reversed: bool,
+    volumes: Vec<Volume>,
 }
 
 
-impl eframe::App for TableDemo {
+impl UI {
+    async fn monitor() {
+        let timer = std::time::Instant::now();
+        loop {
+            tokio::time::sleep(tokio::time::Duration::from_micros(100)).await;
+
+            time_utils::print_time_spent(&timer, "run monitor");
+        }
+    }
+
+    pub fn start_monitor(&self){
+        tokio::task::spawn(UI::monitor());
+    }
+
+}
+
+impl eframe::App for UI {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(
             ctx,
@@ -28,6 +50,8 @@ impl eframe::App for TableDemo {
                 Self::show_ui(self, ui)
             }
         );
+
+        ctx.clone().request_repaint();
 
         /*egui::Window::new(self.name())
             .open(&mut true)
@@ -60,9 +84,9 @@ impl eframe::App for TableDemo {
     */
 
 }
-impl TableDemo
+impl UI
 {
-    pub fn new(cc: & CreationContext) -> Self {
+    pub fn new(cc: & CreationContext, volumes: Vec<Volume>) -> Self {
 
         /*
         cc.egui_ctx.style_mut( |&mut style| {
@@ -82,6 +106,7 @@ impl TableDemo
             selection: Default::default(),
             checked: false,
             reversed: false,
+            volumes: volumes,
         }
     }
 
@@ -98,6 +123,15 @@ impl TableDemo
                 ui.checkbox(&mut self.striped, "Striped");
                 ui.checkbox(&mut self.resizable, "Resizable columns");
                 ui.checkbox(&mut self.clickable, "Clickable rows");
+            });
+
+            ui.horizontal(|ui| {
+                for volume in & self.volumes {
+                    Separator::default().grow(4.0).ui(ui);
+                    egui::widgets::Button::new(
+                        egui::RichText::new(volume.get_drive_name()).monospace().color(egui::Color32::DARK_GREEN).size(15.0),
+                    ).ui(ui);
+                }
             });
 
             ui.label("Table type:");
@@ -166,6 +200,7 @@ impl TableDemo
             .column(Column::remainder())
             .min_scrolled_height(0.0)
             .max_scroll_height(available_height);
+
 
         if self.clickable {
             table = table.sense(egui::Sense::click());

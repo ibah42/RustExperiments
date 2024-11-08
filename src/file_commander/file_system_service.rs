@@ -1,143 +1,76 @@
 ﻿use std::fmt::Debug;
-use std::fs;
+use std::fs::{DirEntry, ReadDir};
 use std::hash::{Hash, Hasher};
 use std::path::PathBuf;
-use std::process::Command;
 use serde::{Deserialize, Serialize};
-use serde_with::serde_as;
-use sysinfo::System;
-use log::error;
+use normpath::PathExt;
+use crate::utils::time_utils;
+use crate::file_commander::volume::Volume;
+use crate::file_commander::disk_type::DiskType;
 
-pub fn get_root(){
 
-    let system = sysinfo::System::new_all();
+pub fn get_files(path: PathBuf) -> Vec<DirEntry>{
 
-    println!("{:?}",system);
+    let result: std::io::Result<ReadDir> = std::fs::read_dir(path);
+    if result.is_err()  {
+        return vec![];
+    }
 
-    // If we don't have any physical core present, it's very likely that we're inside a VM...
-    if system.physical_core_count().unwrap_or_default() > 0 {
-        let mut disks = sysinfo::Disks::new();
+    let mut entries = Vec::<DirEntry>::with_capacity(128);
 
-        assert!(disks.list().is_empty());
-        disks.refresh_list();
-
-        for disk in disks.into_iter() {
-            println!("{:?}",disk);
-
+    for entry in result.unwrap() {
+        if(entry.is_err()) {
+            break;
         }
-
-        assert!(!disks.list().is_empty());
+        entries.push(entry.unwrap());
     }
-    //fs::
+
+    return entries;
 }
-
-
-
-#[derive(Serialize, Deserialize, Debug, Clone, Hash, PartialEq, Eq)]
-#[allow(clippy::upper_case_acronyms)]
-pub enum DiskType {
-    SSD,
-    HDD,
-    Removable,
-}
-
-impl core::fmt::Display for DiskType {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.write_str(match self {
-            Self::SSD => "SSD",
-            Self::HDD => "HDD",
-            Self::Removable => "Removable",
-        })
-    }
-}
-
-#[serde_as]
-#[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct Volume {
-    pub name: String,
-    pub mount_points: Vec<PathBuf>,
-    pub total_capacity: u64,
-    pub available_capacity: u64,
-    pub disk_type: DiskType,
-    pub file_system: Option<String>,
-    pub is_root_filesystem: bool,
-}
-
-impl Hash for Volume {
-    fn hash<H: Hasher>(&self, state: &mut H) {
-        self.name.hash(state);
-        self.mount_points.iter().for_each(|mount_point| {
-            // Hashing like this to ignore ordering between mount points
-            mount_point.hash(state);
-        });
-        self.disk_type.hash(state);
-        self.file_system.hash(state);
-    }
-}
-
-impl PartialEq for Volume {
-    fn eq(&self, other: &Self) -> bool
-    {
-        self.name == other.name &&
-        self.disk_type == other.disk_type &&
-        self.file_system == other.file_system &&
-        self.mount_points
-            .iter()
-            .all(|mount_point| other.mount_points.contains(mount_point))
-    }
-}
-
-impl Eq for Volume {}
-
 
 pub async fn get_volumes() -> Vec<Volume>
 {
     let mut disks = sysinfo::Disks::new();
     disks.refresh_list();
 
-    futures_util::future::join_all(disks.iter().map(|disk| async {
+    let mut result = futures_util::future::join_all(disks.iter().map(|disk| async {
         #[cfg(not(windows))]
         let disk_name = disk.name();
-        let mount_point: PathBuf = disk.mount_point().to_path_buf();
+        let mount_point = disk.mount_point().to_path_buf().normalize_virtually().expect("Could not normalize mount point");
 
-        #[cfg(windows)]
-        let Ok((disk_name, mount_point)) = ({
-            use normpath::PathExt;
-            mount_point
-                .normalize_virtually()
-                .map(|p| (p.localize_name().to_os_string(), p.into_path_buf()))
-        }) else {
-            return None;
-        };
-
+        let disk_name = mount_point.localize_name().to_os_string();
+        let mount_point = mount_point.into_path_buf();
         let is_root_filesystem = mount_point.is_absolute() && mount_point.parent().is_none();
 
         let mut name = disk_name.to_string_lossy().to_string();
-        if name.replace(char::REPLACEMENT_CHARACTER, "") == "" {
+        if name.replace(char::REPLACEMENT_CHARACTER, "").is_empty() {
             name = "Unknown".to_string()
         }
 
-        Some(
-            Volume {
-                name,
-                disk_type: if disk.is_removable() {
-                    DiskType::Removable
-                } else {
-                    match disk.kind() {
-                        sysinfo::DiskKind::SSD => DiskType::SSD,
-                        sysinfo::DiskKind::HDD => DiskType::HDD,
-                        _ => DiskType::Removable,
-                    }
-                },
-                mount_points: vec![mount_point],
-                file_system: Some(disk.file_system().to_str().unwrap().to_string()),
-                total_capacity: disk.total_space(),
-                available_capacity: disk.available_space(),
-                is_root_filesystem,
-            })
+        return Some(Volume {
+            name,
+            disk_type: if disk.is_removable() {
+                DiskType::Removable
+            } else {
+                match disk.kind() {
+                    sysinfo::DiskKind::SSD => DiskType::SSD,
+                    sysinfo::DiskKind::HDD => DiskType::HDD,
+                    _ => DiskType::Removable,
+                }
+            },
+            mount_points: vec![mount_point],
+            file_system: Some(disk.file_system().to_str().unwrap().to_string()),
+            total_capacity: disk.total_space(),
+            available_capacity: disk.available_space(),
+            is_root_filesystem,
+        });
     }))
         .await
         .into_iter()
         .flatten()
-        .collect::<Vec<Volume>>()
+        .collect::<Vec<Volume>>();
+
+    result.sort();
+
+    return result;
 }

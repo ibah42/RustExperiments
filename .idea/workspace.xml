@@ -8,19 +8,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f072a137-d6ba-4df9-9960-2c2533496458" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/file_commander/file_system_service.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/file_commander/mod.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/file_commander/table_demo.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/file_commander/disk_type.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/file_commander/volume.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/time_utils.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/file_commander/file_system_service.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/file_commander/file_system_service.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/file_commander/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/file_commander/mod.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/file_commander/table_demo.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/file_commander/ui.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/mod.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="RsBuildProfile:dev" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="RsBuildProfile:release" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -78,7 +82,7 @@
 }]]></component>
   <component name="RunManager" selected="Cargo.Run RustExperiments">
     <configuration name="Run RustExperiments" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
-      <option name="buildProfileId" value="dev" />
+      <option name="buildProfileId" value="release" />
       <option name="command" value="run --package RustExperiments --bin RustExperiments" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
       <envs />
@@ -236,11 +240,23 @@
       <workItem from="1730994980006" duration="1624000" />
       <workItem from="1730996676301" duration="2203000" />
       <workItem from="1730998928932" duration="3331000" />
+      <workItem from="1731066658056" duration="13557000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
