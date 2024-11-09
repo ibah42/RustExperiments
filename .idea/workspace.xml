@@ -8,14 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f072a137-d6ba-4df9-9960-2c2533496458" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/file_commander/disk_type.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/file_commander/volume.rs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/time_utils.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/async_examples.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/file_commander/file_system_service.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/file_commander/file_system_service.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/file_commander/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/file_commander/mod.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/file_commander/table_demo.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/file_commander/ui.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/mod.rs" afterDir="false" />
     </list>
@@ -49,37 +43,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Cargo.Run RustExperiments.executor": "Debug",
-    "Cargo.Test long_arithmetics::tests::test::test::test_brut_force.executor": "Debug",
-    "Cargo.Test long_arithmetics::tests::test::test::test_digits_2.executor": "Debug",
-    "Cargo.Test long_arithmetics::tests::test::test::test_digits_3.executor": "Debug",
-    "Cargo.Test long_arithmetics::tests::test::test::test_digits_4.executor": "Debug",
-    "Cargo.Test long_arithmetics::tests::test::test::test_integer_to_string_4.executor": "Debug",
-    "Cargo.Test long_arithmetics::tests::test::test::test_random.executor": "Run",
-    "Cargo.Test multiply_strings::tests::test::test::test3.executor": "Debug",
-    "Cargo.Test multiply_strings::tests::test::test::test_digits_4.executor": "Debug",
-    "Cargo.Test rotate_list::tests::test::test::test_1.executor": "Run",
-    "Cargo.Test rotate_list::tests::test::test::test_2.executor": "Debug",
-    "Cargo.Test test::test (1).executor": "Run",
-    "Cargo.Test test::test.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.rust.reset.selective.auto.import": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/_RUST_/spacedrive",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "org.rust.cargo.project.model.PROJECT_DISCOVERY": "true",
-    "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
-    "org.rust.first.attach.projects": "true",
-    "settings.editor.selected.configurable": "preferences.sourceCode.Rust",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Cargo.Run RustExperiments.executor&quot;: &quot;Debug&quot;,
+    &quot;Cargo.Test long_arithmetics::tests::test::test::test_brut_force.executor&quot;: &quot;Debug&quot;,
+    &quot;Cargo.Test long_arithmetics::tests::test::test::test_digits_2.executor&quot;: &quot;Debug&quot;,
+    &quot;Cargo.Test long_arithmetics::tests::test::test::test_digits_3.executor&quot;: &quot;Debug&quot;,
+    &quot;Cargo.Test long_arithmetics::tests::test::test::test_digits_4.executor&quot;: &quot;Debug&quot;,
+    &quot;Cargo.Test long_arithmetics::tests::test::test::test_integer_to_string_4.executor&quot;: &quot;Debug&quot;,
+    &quot;Cargo.Test long_arithmetics::tests::test::test::test_random.executor&quot;: &quot;Run&quot;,
+    &quot;Cargo.Test multiply_strings::tests::test::test::test3.executor&quot;: &quot;Debug&quot;,
+    &quot;Cargo.Test multiply_strings::tests::test::test::test_digits_4.executor&quot;: &quot;Debug&quot;,
+    &quot;Cargo.Test rotate_list::tests::test::test::test_1.executor&quot;: &quot;Run&quot;,
+    &quot;Cargo.Test rotate_list::tests::test::test::test_2.executor&quot;: &quot;Debug&quot;,
+    &quot;Cargo.Test test::test (1).executor&quot;: &quot;Run&quot;,
+    &quot;Cargo.Test test::test.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.rust.reset.selective.auto.import&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/_RUST_/spacedrive&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;org.rust.cargo.project.model.PROJECT_DISCOVERY&quot;: &quot;true&quot;,
+    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
+    &quot;org.rust.first.attach.projects&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.Rust&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\_RUST_\RustExperiments\src\utils" />
+    </key>
+  </component>
   <component name="RunManager" selected="Cargo.Run RustExperiments">
     <configuration name="Run RustExperiments" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
       <option name="buildProfileId" value="release" />
@@ -240,7 +239,8 @@
       <workItem from="1730994980006" duration="1624000" />
       <workItem from="1730996676301" duration="2203000" />
       <workItem from="1730998928932" duration="3331000" />
-      <workItem from="1731066658056" duration="13557000" />
+      <workItem from="1731066658056" duration="15935000" />
+      <workItem from="1731145438228" duration="332000" />
     </task>
     <servers />
   </component>
